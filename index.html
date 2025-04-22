@@ -6,81 +6,124 @@
     <title>Meu site menu</title>
 
  <style>
-body{
-    font-family: Arial, Helvetica, sans-serif; /* Altera o tipo de letra */
-    background-color: #a8a8a8;
-}
+  body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* Um azul bem clarinho */
+        }
 
-.menu{
-    justify-items: center; /* Alinhar os Items*/
-    background-color: #333; /* Altera a cor de Fundo */
-    color: aliceblue; /* Altera a Cor da Letra */
-}
+        nav {
+            background-color: #4682B4; /* Um azul mais suave */
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Uma sombra leve */
+        }
 
-.menu-lista{
-    list-style: none; /* Tirar os Pontinhos */
-    display: flex; /* Deixa Tudo Flexível */
-    padding: 0; /* Adiciona um espaço nos Items */
-    margin: 0; /* Modifica a margen do Nav e Div */
-}
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            margin: 0 15px;
+            border-radius: 8px; /* Bordas mais arredondadas */
+            transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+        }
 
-.menu-item{
-    margin: 0; /* Modifica a margen do Nav e Div */
-}
+        nav a:hover {
+            background-color: #6495ED; /* Um azul um pouco mais claro ao passar o mouse */
+        }
 
-.menu-item a{
-    display: block; /* Quebra a linha e empurra os itens Para Baixo */
-    padding: 15px 20px;  /* Adiciona um espaço nos Items */
-    text-decoration: none; /* Decora um texto */
-    color: #fff; /* Altera a Cor da Letra */
-}
+        .container {
+            padding: 30px;
+        }
 
+        .aba {
+            display: none;
+            padding: 25px;
+            background-color: white;
+            border: 1px solid #ddd;
+            margin-top: 25px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Outra sombra leve */
+        }
 
-.menu-item a:hover{
-background-color: red; /* Altera a cor de Fundo */
-}
+        .aba.ativa {
+            display: block;
+        }
 
-.conteudo{
-    background-color: white; /* Altera a cor de Fundo */
-    text-align: center; /* Alinhar ao Centro */
-    margin: 20px 20%;
-    padding: 10px;
-}
+        .aba h2 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
 
-.conteudo p{
-    text-align: justify; /* Justifica o P */
-    margin: 20px 30px;
+        .aba p {
+            color: #555;
+            line-height: 1.6;
+        }
 
-}
-
+        .ativo {
+            background-color: #5DADE2; /* Um azul ainda mais vibrante para a aba ativa */
+        }
 
  </style>
 
 </head>
 <body>
 
-    <nav class="menu">
-        <ul class="menu-lista">
-            <li class="menu-item"><a href="./index.html">Inicio</a></li>
-            <li class="menu-item"><a href="./sobre.html">Sobre</a></li>
-            <li class="menu-item"><a href="./contato.html">Contato</a></li>
+    
 
-        </ul>
-
-
-
+    <nav>
+        <a href="#" onclick="mostrarAba('inicio')" class="ativo">Início</a>
+        <a href="#" onclick="mostrarAba('contato')">Contato</a>
+        <a href="#" onclick="mostrarAba('sobre')">Sobre</a>
     </nav>
 
-    <div class="conteudo">
-        <h1>Bem-vindo ao Menu Simples</h1>
+    <div class="container">
+        <div id="inicio" class="aba ativa">
+            <h2>Bem-vindo!</h2>
+            <p>Olá e seja bem-vindo ao nosso site! Explore as diferentes seções para descobrir mais sobre o que temos para oferecer. Esperamos que você goste da sua visita!</p>
+        </div>
 
-                  <p>Bem-vindo ao Menu Simples
+        <div id="contato" class="aba">
+            <h2>Fale Conosco</h2>
+            <p>Tem alguma pergunta ou gostaria de nos dar um feedback? Sinta-se à vontade para entrar em contato! Estamos sempre prontos para ajudar.</p>
+            </div>
 
-                    Este é um exemplo de menu simples com uma caixa de conteúdo. O menu é responsivo e possui uma transição suave ao passar o mouse sobre os itens. A caixa de conteúdo está centralizada na página e possui um visual limpo e moderno.  
- 
-                    </p>
+        <div id="sobre" class="aba">
+            <h2>Quem Somos</h2>
+            <p>Somos um grupo de pessoas apaixonadas por criar coisas incríveis. Nossa missão é trazer alegria e conhecimento para todos que nos encontram.</p>
+        </div>
+    </div>
 
+    <script>
+        function mostrarAba(id) {
+            var abas = document.querySelectorAll('.aba');
+            abas.forEach(function(aba) {
+                aba.classList.remove('ativa');
+            });
 
+            var links = document.querySelectorAll('nav a');
+            links.forEach(function(link) {
+                link.classList.remove('ativo');
+            });
+
+            var abaSelecionada = document.getElementById(id);
+            if (abaSelecionada) {
+                abaSelecionada.classList.add('ativa');
+            }
+
+            var linkAtivo = document.querySelector('nav a[onclick*="' + id + '"]');
+            if (linkAtivo) {
+                linkAtivo.classList.add('ativo');
+            }
+        }
+
+        window.onload = function() {
+            mostrarAba('inicio');
+        };
+    </script>
+   
     </div>
 </body>
 </html>
